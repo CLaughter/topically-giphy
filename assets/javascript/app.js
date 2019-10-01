@@ -32,7 +32,7 @@ $(document).ready(function() {
     // limit= 10
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + motorcycle + "&api_key=" + APIKey + "&limit=10";
 
-		// Run our AJAX call to the Giphy API
+		// Run AJAX call to the Giphy API
 		$.ajax({
 			url: queryURL,
 			method: "GET"
@@ -40,34 +40,21 @@ $(document).ready(function() {
 		.catch(function(error) {
 			console.log(error);
 		})
-		// Store the retrieved data inside of an object called "response"
+		// Store the retrieved data inside "response" object
 		.then(function(response){
 			console.log(queryURL);
 			console.log(response);
 			var results = response.data;
 			for(var i = 0; i < results.length; i++) {
-				var bikes = $("topicButton");
+				// var bikes = $("topicButton");
 				var Image = $("<img/>");
 				Image.addClass("bikeImg")
 				Image.attr("src",results[i].images.fixed_height.url);
 				Image.attr("data-still", results[i].images.fixed_height_still.url)
 				Image.attr("data-animate", results[i].images.fixed_height.url)
 				.attr("data-state","animate");
-				// bikes.append(p);
-				// bikes.append(Image);
 				Image.prependTo($("#images"));
 			}
-			// $(".bikeImg").on("click",function(){
-			// 	var state = $(this).attr("data-state");
-			// 	console.log(this);
-			// 	if(state === "still") {
-			// 		$(this).attr("src", $(this).data("animate"));
-			// 		$(this).attr("data-state","animate");
-			// 	} else {
-			// 		$(this).attr("src", $(this).data("still"));
-			// 		$(this).attr("data-state", "still");
-			// 	}
-			// });
 		});
 	});
 
@@ -76,30 +63,7 @@ $("#find-topic").on("click", function(event){
 	var bikeButton = $("#topic-input").val();
 	topics.push(bikeButton);
 	makeButton();
-	// $("#topicButtons").append(newButton);
 	console.log("work");
-	// queryURL = "https://api.giphy.com/v1/gifs/search?q=" + motorcycle + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
-	// console.log(bikeButton);
-
-	// $.ajax({
-	// url:queryURL,
-	// method: "GET"
-	// }).done(function(response){
-	// 	var results = response.data;
-	// 	for (var i = 0; i < results.length; i++){
-	// 		var bikes = $("<div/>");
-	// 		var p = $("<p/>");
-	// 		p.text(results[i].rating);
-	// 		var bikeImage = $("bikeImg")
-	// 		bikeImage.addClass("bikeImg")
-	// 		bikeImage.attr("src",results[i].images.fixed_height_still.url);
-	// 		bikeImage.attr("data-still",results[i].images.fixed_height_still.url);
-	// 		bikeImage.attr("data-animate",results[i].images.fixed_height.url).attr("data-state", "still");
-	// 		bikes.append(p);
-	// 		bikes.append(bikeImage);
-	// 		bikes.prependTo($("#gifs"));		
-	// 		}
-	// 	});
 	});
 
 	$(document).on("click", ".bikeImg", function(){
@@ -113,23 +77,5 @@ $("#find-topic").on("click", function(event){
 			$(this).attr("data-state", "still");
 		}
 		});
-
-	// $("#topic-input").val();
-	// return false;
 	});
-
-  // $(".gif").on("click", function() {
-  //   // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-  //   var state = $(this).attr("data-state");
-  //   // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-  //   // Then, set the image's data-state to animate
-  //   // Else set src to the data-still value
-  //   if (state === "still") {
-  //     $(this).attr("src", $(this).attr("data-animate"));
-  //     $(this).attr("data-state", "animate");
-  //   } else {
-  //     $(this).attr("src", $(this).attr("data-still"));
-  //     $(this).attr("data-state", "still");
-  //   }
-  // });
   
